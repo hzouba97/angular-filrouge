@@ -10,6 +10,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FullCalendarModule} from "@fullcalendar/angular";
 import { PlanningComponent } from './components/planning/planning.component';
+import { AddUsersComponent } from './components/add-users/add-users.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -17,16 +19,19 @@ import { PlanningComponent } from './components/planning/planning.component';
     NavbarComponent,
     UsersListComponent,
     UsersDetailsComponent,
-    PlanningComponent
+    PlanningComponent,
+    AddUsersComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    BrowserModule,
-    FullCalendarModule // register FullCalendar with the app
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgbModule,
+        BrowserModule,
+        FullCalendarModule,
+        FormsModule,
+        // register FullCalendar with the app
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
