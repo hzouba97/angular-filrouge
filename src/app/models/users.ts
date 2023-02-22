@@ -5,4 +5,6 @@ export interface Users {
   mail: string;
   password: string;
   activate: boolean;
+  ville: string;
+
 }
