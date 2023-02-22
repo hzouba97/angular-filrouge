@@ -3,12 +3,11 @@ import { CalendarOptions } from '@fullcalendar/core'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-planning',
+  templateUrl: './planning.component.html',
+  styleUrls: ['./planning.component.css']
 })
-export class AppComponent {
-  title = 'angular-filrouge';
+export class PlanningComponent {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin]
