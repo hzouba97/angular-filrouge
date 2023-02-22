@@ -14,4 +14,8 @@ export class UsersService {
     return this.http.get<Users[]>('http://localhost:8080/api/users');
   }
 
+  fetchUsersById(id: number): Observable<Users>{
+    return this.http.get<Users>(`http://localhost:8080/api/users/${id}`);
+  }
+
 }
