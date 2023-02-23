@@ -1,5 +1,13 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventInput} from '@fullcalendar/core'; // useful for typechecking
+import {
+  CalendarOptions,
+  DateInput,
+  DateSelectArg,
+  EventApi,
+  EventChangeArg,
+  EventClickArg,
+  EventInput
+} from '@fullcalendar/core'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -40,7 +48,8 @@ export class PlanningComponent implements OnInit {
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
+    eventsSet: this.handleEvents.bind(this),
+    eventChange: this.handleEventChange.bind(this)
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:
@@ -74,6 +83,9 @@ export class PlanningComponent implements OnInit {
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
       clickInfo.event.remove();
+      // this.eventService.deleteEvent(clickInfo.event.id).subscribe(() => {
+      //   this.currentEvents = this.currentEvents.filter(event => event.id !== clickInfo.event.id);
+      // });
     }
   }
 
@@ -81,6 +93,30 @@ export class PlanningComponent implements OnInit {
     this.currentEvents = events;
     this.changeDetector.detectChanges();
   }
+
+
+
+  handleEventChange(changeInfo: EventChangeArg) {
+    const event = changeInfo.event;
+    const start: DateInput | undefined = event.start ? event.start : undefined;
+    this.eventService.editEvent({
+      id: event.id,
+      title: event.title,
+      start: start,
+      description: event.extendedProps['description']
+    }).subscribe(() => {
+      this.currentEvents = this.currentEvents.map(oldEvent => {
+        if (oldEvent.id === event.id) {
+          return event;
+        } else {
+          return oldEvent;
+        }
+      });
+    });
+  }
+
+
+
 
   events: EventInput[] = [];
 
