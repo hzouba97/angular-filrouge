@@ -6,7 +6,6 @@ import {EventInput} from "@fullcalendar/core";
 import {createEventId} from "../components/planning/event-utils";
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +13,12 @@ export class EventServiceService {
 
   constructor(private http: HttpClient) {
   }
+
+
+
+  
+  createEvents(createEvents: any):Observable<void>{
+    return this.http.post<void>('http://localhost:8080/api/events/add', createEvents);
 
 
   fetchEvents(): Observable<EventInput[]> {

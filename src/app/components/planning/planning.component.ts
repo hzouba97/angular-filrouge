@@ -94,6 +94,7 @@ export class PlanningComponent implements OnInit{
   }
 
 
+
   // events: EventInput[] = [];
   //
   // ngOnInit(): void {
