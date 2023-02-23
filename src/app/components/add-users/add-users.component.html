@@ -1,10 +1,6 @@
-<head>
-  <title>Create An Account</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-  <h2>Create an Account</h2>
+
+<div class="container sm-container mt-2 p-4">
+  <h2 class="text-center">Create an Account</h2>
 
     <div class="form-group">
       <label> Lastname:</label>
@@ -31,7 +27,7 @@
       <input type="password" [(ngModel)]="users.password" class="form-control" id="motdepasse" name="motdepasse" required>
     </div>
 
-    <div class="form-group">
+    <div class="form-group"> 
       <label for="ville">Ville:</label>
       <input type="text" [(ngModel)]="users.ville" class="form-control" id="ville" name="ville" required>
     </div>
@@ -55,10 +51,9 @@
       <input type="tel" [(ngModel)]="users.phoneNumber" class="form-control" id="telephone" name="telephone" required pattern="\d{10}">
       <small class="form-text text-muted">Entrez un numéro de téléphone valide (10 chiffres).</small>
     </div>
-
-    <button type="submit" class="btn btn-primary" (click)="addUsers()"> S'inscrire</button>
-
+    
+<div class="text-center">
+  <button type="submit" class="btn btn-primary"  (click)="addUsers()"> S'inscrire</button>
 </div>
 
-</body>
-
+</div>
