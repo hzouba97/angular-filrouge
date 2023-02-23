@@ -39,6 +39,14 @@ export class EventServiceService {
       ));
   }
 
+  editEvent(event: EventInput): Observable<EventInput> {
+    return this.http.put<EventInput>(`http://localhost:8080/api/events/${event.id}`, {
+      title: event.title,
+      date: event.start,
+      description: event['description']
+    });
+  }
+
 
 
   // private eventsUrl = 'http://localhost:8080/api/events';
@@ -49,5 +57,7 @@ export class EventServiceService {
   putEvents(event: any): Observable<void> {
     return this.http.put<void>(`http://localhost:8080/api/events/${event.id}`, event);
   }
+
+ // deleteEvent(): Observable<EventInput>
 
 }
