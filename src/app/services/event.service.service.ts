@@ -6,7 +6,6 @@ import {EventInput} from "@fullcalendar/core";
 import {createEventId} from "../components/planning/event-utils";
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +15,9 @@ export class EventServiceService {
   }
 
   TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
+  
+  createEvents(createEvents: any):Observable<void>{
+    return this.http.post<void>('http://localhost:8080/api/events/add', createEvents);
 
   fetchEvents(): Observable<EventInput[]> {
     return this.http.get<Event[]>('http://localhost:8080/api/events')

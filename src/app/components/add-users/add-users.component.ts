@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {UsersService} from "../../services/users.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-users',
@@ -22,13 +23,14 @@ export class AddUsersComponent {
     phoneNumber: '',
   };
 
-  constructor(private usersService:UsersService) {
+  constructor(private usersService:UsersService, private router: Router) {
   }
 
   addUsers(){
     this.usersService
       .createUsers(this.users)
       .subscribe(ok => {alert('ok')})
+    this.router.navigate(['users']);
   }
 
 }

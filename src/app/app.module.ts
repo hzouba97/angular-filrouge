@@ -12,6 +12,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
 import { PlanningComponent } from './components/planning/planning.component';
 import { AddUsersComponent } from './components/add-users/add-users.component';
 import {FormsModule} from "@angular/forms";
+import { AddEventsComponent } from './components/add-events/add-events.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import {FormsModule} from "@angular/forms";
     UsersDetailsComponent,
     PlanningComponent,
     AddUsersComponent,
-
+    AddEventsComponent,
   ],
     imports: [
         BrowserModule,

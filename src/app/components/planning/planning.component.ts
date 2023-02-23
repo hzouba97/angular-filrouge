@@ -84,6 +84,7 @@ export class PlanningComponent implements OnInit{
 
   // events?: Event[]
 
+
   // ngOnInit():void {
   //   this.eventService
   //     .fetchEvents()
