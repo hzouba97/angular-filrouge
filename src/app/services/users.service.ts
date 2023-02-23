@@ -18,4 +18,8 @@ export class UsersService {
     return this.http.get<Users>(`http://localhost:8080/api/users/${id}`);
   }
 
+  createUsers(createUsers: any):Observable<void>{
+    return this.http.post<void>('http://localhost:8080/api/users/add',createUsers);
+  }
+
 }
