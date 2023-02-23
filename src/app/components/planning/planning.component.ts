@@ -81,8 +81,7 @@ export class PlanningComponent implements OnInit{
     this.currentEvents = events;
     this.changeDetector.detectChanges();
   }
-
-  // events?: Event[]
+  
   events: EventInput[] = [];
 
   ngOnInit():void {
