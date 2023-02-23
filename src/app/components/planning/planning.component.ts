@@ -81,30 +81,32 @@ export class PlanningComponent implements OnInit{
     this.currentEvents = events;
     this.changeDetector.detectChanges();
   }
-
-  // events?: Event[]
-
-
-  // ngOnInit():void {
-  //   this.eventService
-  //     .fetchEvents()
-  //     .subscribe(data => {
-  //       this.calendarOptions.initialEvents=data;
-  //
-  //     });
-  // }
+  
   events: EventInput[] = [];
 
-  ngOnInit(): void {
-    this.eventService.getEvents().subscribe(events => {
-      this.events = events.map(event => ({
-        title: event.title,
-        start: new Date(event.date),
-        end: new Date(event.date),
-        description: event.description,
-        id: String(event.id), // Convertir l'ID en string
-      }));
-    });
+  ngOnInit():void {
+    this.eventService
+      .fetchEvents()
+      .subscribe(data => {
+        this.events=data;
 
-}
+      });
+  }
+
+
+
+  // events: EventInput[] = [];
+  //
+  // ngOnInit(): void {
+  //   this.eventService.getEvents().subscribe(events => {
+  //     this.events = events.map(event => ({
+  //       title: event.title,
+  //       start: new Date(event.date),
+  //       end: new Date(event.date),
+  //       description: event.description,
+  //       id: String(event.id), // Convertir l'ID en string
+//   //     }));
+//   //   });
+//
+// }
 }
