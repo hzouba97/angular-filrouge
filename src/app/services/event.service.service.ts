@@ -40,4 +40,8 @@ export class EventServiceService {
     return this.http.get<Event[]>(this.eventsUrl);
   }
 
+  putEvents(event: any): Observable<void> {
+    return this.http.put<void>(`http://localhost:8080/api/events/${event.id}`, event);
+  }
+
 }
