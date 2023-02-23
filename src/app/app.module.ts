@@ -14,6 +14,7 @@ import { AddUsersComponent } from './components/add-users/add-users.component';
 import {FormsModule} from "@angular/forms";
 import { AddEventsComponent } from './components/add-events/add-events.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,9 +33,11 @@ import { AddEventsComponent } from './components/add-events/add-events.component
         BrowserModule,
         FullCalendarModule,
         FormsModule,
+
+
         // register FullCalendar with the app
     ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
