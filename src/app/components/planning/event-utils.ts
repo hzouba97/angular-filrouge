@@ -1,7 +1,17 @@
 import { EventInput } from '@fullcalendar/core';
+import {OnInit} from "@angular/core";
+import {Users} from "../../models/users";
+import {UsersService} from "../../services/users.service";
+import {EventServiceService} from "../../services/event.service.service";
+
+
 
 let eventGuid = 0;
 const TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
+
+
+
+
 
 export const INITIAL_EVENTS: EventInput[] = [
   {
