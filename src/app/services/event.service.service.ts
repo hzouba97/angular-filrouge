@@ -23,15 +23,21 @@ export class EventServiceService {
           let events : EventInput[]=[];
           data.map(e => {
             let event: EventInput = {
-                id: createEventId(),
-                title: 'All-day event',
-                start: this.TODAY_STR
+              id: createEventId(),
+              title: 'Timed event',
+              start: this.TODAY_STR + 'T00:00:00',
+              end: this.TODAY_STR + 'T03:00:00'
             };
             events.push(event);
           });
       return events;
         }
       ));
+  }
+
+  private eventsUrl = 'http://localhost:8080/api/events';
+  getEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.eventsUrl);
   }
 
 }
