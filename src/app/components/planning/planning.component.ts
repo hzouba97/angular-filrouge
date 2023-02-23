@@ -1,11 +1,15 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {CalendarOptions, DateSelectArg, EventApi, EventClickArg} from '@fullcalendar/core'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import {createEventId, INITIAL_EVENTS} from "./event-utils";
+import {Event} from "../../models/event";
+import {EventServiceService} from "../../services/event.service.service";
+
 // import { INITIAL_EVENTS, createEventId } from './event-utils';
+//import {EventApiSpring} from './event-from-API'
 
 @Component({
   selector: 'app-planning',
@@ -14,7 +18,7 @@ import {createEventId, INITIAL_EVENTS} from "./event-utils";
 })
 
 
-export class PlanningComponent {
+export class PlanningComponent implements OnInit{
   calendarOptions: CalendarOptions = {
     plugins: [
       dayGridPlugin,
@@ -27,7 +31,8 @@ export class PlanningComponent {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
   },
     initialView: 'dayGridMonth',
-    initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+    // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+    initialEvents: [],
     weekends: true,
     editable: true,
     selectable: true,
@@ -45,7 +50,8 @@ export class PlanningComponent {
 
   currentEvents: EventApi[] = [];
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef,
+              private eventService: EventServiceService) {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
@@ -76,8 +82,16 @@ export class PlanningComponent {
     this.changeDetector.detectChanges();
   }
 
+  events?: Event[]
 
+  ngOnInit():void {
+    this.eventService
+      .fetchEvents()
+      .subscribe(data => {
+        this.calendarOptions.initialEvents=data;
 
+      });
+  }
 
 
 }
