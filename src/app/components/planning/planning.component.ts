@@ -18,18 +18,18 @@ import {EventServiceService} from "../../services/event.service.service";
 })
 
 
-export class PlanningComponent implements OnInit{
+export class PlanningComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     plugins: [
       dayGridPlugin,
       interactionPlugin,
       timeGridPlugin,
       listPlugin,
-    ],headerToolbar: {
+    ], headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-  },
+    },
     initialView: 'dayGridMonth',
     // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     initialEvents: [],
@@ -81,18 +81,17 @@ export class PlanningComponent implements OnInit{
     this.currentEvents = events;
     this.changeDetector.detectChanges();
   }
-  
+
   events: EventInput[] = [];
 
-  ngOnInit():void {
+  ngOnInit(): void {
     this.eventService
       .fetchEvents()
       .subscribe(data => {
-        this.events=data;
+        this.events = data;
 
       });
   }
-
 
 
   // events: EventInput[] = [];
