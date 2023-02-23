@@ -1,5 +1,13 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {CalendarOptions, DateSelectArg, EventApi, EventClickArg, EventInput} from '@fullcalendar/core'; // useful for typechecking
+import {
+  CalendarOptions,
+  DateInput,
+  DateSelectArg,
+  EventApi,
+  EventChangeArg,
+  EventClickArg,
+  EventInput
+} from '@fullcalendar/core'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -18,18 +26,18 @@ import {EventServiceService} from "../../services/event.service.service";
 })
 
 
-export class PlanningComponent implements OnInit{
+export class PlanningComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     plugins: [
       dayGridPlugin,
       interactionPlugin,
       timeGridPlugin,
       listPlugin,
-    ],headerToolbar: {
+    ], headerToolbar: {
       left: 'prev,next today',
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-  },
+    },
     initialView: 'dayGridMonth',
     // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
     initialEvents: [],
@@ -40,7 +48,8 @@ export class PlanningComponent implements OnInit{
     dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
+    eventsSet: this.handleEvents.bind(this),
+    eventChange: this.handleEventChange.bind(this)
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:
@@ -74,6 +83,9 @@ export class PlanningComponent implements OnInit{
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
       clickInfo.event.remove();
+      // this.eventService.deleteEvent(clickInfo.event.id).subscribe(() => {
+      //   this.currentEvents = this.currentEvents.filter(event => event.id !== clickInfo.event.id);
+      // });
     }
   }
 
@@ -82,28 +94,54 @@ export class PlanningComponent implements OnInit{
     this.changeDetector.detectChanges();
   }
 
-  // events?: Event[]
 
-  // ngOnInit():void {
-  //   this.eventService
-  //     .fetchEvents()
-  //     .subscribe(data => {
-  //       this.calendarOptions.initialEvents=data;
-  //
-  //     });
-  // }
+
+  handleEventChange(changeInfo: EventChangeArg) {
+    const event = changeInfo.event;
+    const start: DateInput | undefined = event.start ? event.start : undefined;
+    this.eventService.editEvent({
+      id: event.id,
+      title: event.title,
+      start: start,
+      description: event.extendedProps['description']
+    }).subscribe(() => {
+      this.currentEvents = this.currentEvents.map(oldEvent => {
+        if (oldEvent.id === event.id) {
+          return event;
+        } else {
+          return oldEvent;
+        }
+      });
+    });
+  }
+
+
+
+
   events: EventInput[] = [];
 
   ngOnInit(): void {
-    this.eventService.getEvents().subscribe(events => {
-      this.events = events.map(event => ({
-        title: event.title,
-        start: new Date(event.date),
-        end: new Date(event.date),
-        description: event.description,
-        id: String(event.id), // Convertir l'ID en string
-      }));
-    });
+    this.eventService
+      .fetchEvents()
+      .subscribe(data => {
+        this.events = data;
 
-}
+      });
+  }
+
+
+  // events: EventInput[] = [];
+  //
+  // ngOnInit(): void {
+  //   this.eventService.getEvents().subscribe(events => {
+  //     this.events = events.map(event => ({
+  //       title: event.title,
+  //       start: new Date(event.date),
+  //       end: new Date(event.date),
+  //       description: event.description,
+  //       id: String(event.id), // Convertir l'ID en string
+//   //     }));
+//   //   });
+//
+// }
 }

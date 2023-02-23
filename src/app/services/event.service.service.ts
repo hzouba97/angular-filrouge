@@ -15,7 +15,10 @@ export class EventServiceService {
   constructor(private http: HttpClient) {
   }
 
-  TODAY_STR = new Date().toISOString().replace(/T.*$/, ''); // YYYY-MM-DD of today
+  createEvents(createEvents: any): Observable<void> {
+    return this.http.post<void>('http://localhost:8080/api/events/add', createEvents);
+  }
+
 
   fetchEvents(): Observable<EventInput[]> {
     return this.http.get<Event[]>('http://localhost:8080/api/events')
@@ -23,10 +26,11 @@ export class EventServiceService {
           let events : EventInput[]=[];
           data.map(e => {
             let event: EventInput = {
-              id: createEventId(),
-              title: 'Timed event',
-              start: this.TODAY_STR + 'T00:00:00',
-              end: this.TODAY_STR + 'T03:00:00'
+              title: e.title,
+                    start: new Date(e.date),
+                    end: new Date(e.date),
+                    description: e.description,
+                    id: String(e.id), // Convertir l'ID en string
             };
             events.push(event);
           });
@@ -35,13 +39,25 @@ export class EventServiceService {
       ));
   }
 
-  private eventsUrl = 'http://localhost:8080/api/events';
-  getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.eventsUrl);
+  editEvent(event: EventInput): Observable<EventInput> {
+    return this.http.put<EventInput>(`http://localhost:8080/api/events/${event.id}`, {
+      title: event.title,
+      date: event.start,
+      description: event['description']
+    });
   }
+
+
+
+  // private eventsUrl = 'http://localhost:8080/api/events';
+  // getEvents(): Observable<Event[]> {
+  //   return this.http.get<Event[]>(this.eventsUrl);
+  // }
 
   putEvents(event: any): Observable<void> {
     return this.http.put<void>(`http://localhost:8080/api/events/${event.id}`, event);
   }
+
+ // deleteEvent(): Observable<EventInput>
 
 }
