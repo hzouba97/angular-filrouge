@@ -83,11 +83,13 @@ export class PlanningComponent implements OnInit {
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
       clickInfo.event.remove();
-      // this.eventService.deleteEvent(clickInfo.event.id).subscribe(() => {
-      //   this.currentEvents = this.currentEvents.filter(event => event.id !== clickInfo.event.id);
-      // });
+      const eventId = parseInt(clickInfo.event.id, 10); // conversion en nombre
+      this.eventService.deleteEvent(eventId).subscribe(() => {
+        this.currentEvents = this.currentEvents.filter(event => event.id !== clickInfo.event.id);
+      });
     }
   }
+
 
   handleEvents(events: EventApi[]) {
     this.currentEvents = events;

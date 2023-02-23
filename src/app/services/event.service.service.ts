@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {catchError, map, Observable, throwError} from "rxjs";
 import {Event} from "../models/event";
 import {EventInput} from "@fullcalendar/core";
 import {createEventId} from "../components/planning/event-utils";
@@ -58,6 +58,8 @@ export class EventServiceService {
     return this.http.put<void>(`http://localhost:8080/api/events/${event.id}`, event);
   }
 
- // deleteEvent(): Observable<EventInput>
+  deleteEvent(eventid: number): Observable<EventInput>{
+    return this.http.delete<EventInput>(`http://localhost:8080/api/events/${eventid}`);
+  }
 
 }
