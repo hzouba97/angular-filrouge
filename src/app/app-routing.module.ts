@@ -11,7 +11,7 @@ import {AddEventsComponent} from "./components/add-events/add-events.component";
 const routes: Routes = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
   {path:'users', component: UsersListComponent},
-  {path:'users/weather', component: WeatherApiComponent}
+  {path:'users/weather', component: WeatherApiComponent},
   {path:'users/:id', component: UsersDetailsComponent},
   {path:'users/:id/planning', component: PlanningComponent},
   {path:'add-users', component: AddUsersComponent},
