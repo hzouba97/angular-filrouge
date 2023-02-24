@@ -47,18 +47,24 @@ export class EventServiceService {
 
 
 
-  editEvent(eventInput: EventInput): Observable<EventInput> {
-    let event: Event = {
-      id: Number(eventInput.id),
-      title: String(eventInput.title),
-      description: eventInput['description'],
-      date: typeof eventInput.date === 'string' ? new Date(eventInput.date.replace(/-/g, '/')) : Array.isArray(eventInput.date) ? undefined : eventInput.date ? new Date(Number(eventInput.date)) : undefined,
-      startTime: eventInput['startTime'] ? new Date(`1970-01-01T${eventInput['startTime']}Z`) : undefined,
-      endTime: eventInput['endTime'] ? new Date(`1970-01-01T${eventInput['endTime']}Z`) : undefined,
+  editEvent(event: Event): Observable<Event> {
+    const start = event.startTime ? moment(event.startTime).local().format("HH:mm:ss") : null;
+    const end = event.endTime ? moment(event.endTime).local().format("HH:mm:ss") : null;
+
+    const data: any = {
+      title: event.title,
+      date: moment(event.date).local().format("YYYY-MM-DD"),
+      description: event.description || '',
+      startTime: start,
+      endTime: end
     };
-    console.log('EVENT avant envoi:', JSON.stringify(event));
-    return this.http.put<EventInput>(`http://localhost:8080/api/events/${event.id}`,event);
+    return this.http.put<Event>(`http://localhost:8080/api/events/${event.id}`, data);
   }
+
+
+
+
+
 
 
 

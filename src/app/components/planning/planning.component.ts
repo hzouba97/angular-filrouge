@@ -15,6 +15,7 @@ import listPlugin from '@fullcalendar/list';
 import {createEventId, INITIAL_EVENTS} from "./event-utils";
 import {Event} from "../../models/event";
 import {EventServiceService} from "../../services/event.service.service";
+import * as moment from "moment";
 
 // import { INITIAL_EVENTS, createEventId } from './event-utils';
 //import {EventApiSpring} from './event-from-API'
@@ -115,14 +116,16 @@ export class PlanningComponent implements OnInit {
       formattedEndTime = end.toISOString().substring(11, 19);
     }
 
-    this.eventService.editEvent({
-      id: String(eventId),
+    const editedEvent: Event = {
+      id: eventId,
       title: event.title,
-      date: formattedStart,
-      startTime: formattedStartTime,
-      endTime: formattedEndTime,
-      description: event.extendedProps['description']
-    }).subscribe({
+      date: new Date(formattedStart),
+      startTime: new Date(`1970-01-01T${formattedStartTime}Z`),
+      endTime: formattedEndTime ? new Date(`1970-01-01T${formattedEndTime}Z`) : undefined,
+      description: event.extendedProps['description'] || ''
+    };
+
+    this.eventService.editEvent(editedEvent).subscribe({
       next: data => {
         const index = this.currentEvents.findIndex(e => e.id === event.id);
         if (index >= 0) {
@@ -143,16 +146,18 @@ export class PlanningComponent implements OnInit {
 
 
 
+
+
+
   events: EventInput[] = [];
 
   ngOnInit(): void {
-    this.eventService
-      .fetchEvents()
-      .subscribe(data => {
-        this.events = data;
-
-      });
+    this.eventService.fetchEvents().subscribe(data => {
+      this.events = data;
+      this.calendarOptions.initialEvents = data;
+    });
   }
+
 
 
   // events: EventInput[] = [];
