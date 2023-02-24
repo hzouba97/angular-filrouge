@@ -12,6 +12,9 @@ import { FullCalendarModule } from "@fullcalendar/angular";
 import { PlanningComponent } from './components/planning/planning.component';
 import { WeatherApiComponent } from "./components/weather-api/weather-api.component";
 import {WeatherService} from "./services/weather.service";
+import { AddUsersComponent } from './components/add-users/add-users.component';
+import {FormsModule} from "@angular/forms";
+import { AddEventsComponent } from './components/add-events/add-events.component';
 
 
 @NgModule({
@@ -21,21 +24,23 @@ import {WeatherService} from "./services/weather.service";
     UsersListComponent,
     UsersDetailsComponent,
     PlanningComponent,
+    AddUsersComponent,
+    AddEventsComponent,
     WeatherApiComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    BrowserModule,
-    FullCalendarModule // register FullCalendar with the app
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgbModule,
+        BrowserModule,
+        FullCalendarModule,
+        FormsModule,
+        // register FullCalendar with the app
+    ],
   providers: [
-    WeatherService
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+     WeatherService
+     ],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
