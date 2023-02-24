@@ -97,25 +97,48 @@ export class PlanningComponent implements OnInit {
   }
 
 
-
   handleEventChange(changeInfo: EventChangeArg) {
     const event = changeInfo.event;
-    const start: DateInput | undefined = event.start ? event.start : undefined;
+    const start = event.start;
+    const end = event.end;
+    const eventId = parseInt(event.id, 10);
+
+    if (!start || !end) {
+      return;
+    }
+
+    const formattedStart = start.toISOString().substring(0, 10);
+    const formattedStartTime = start.toISOString().substring(11, 19);
+
+    let formattedEndTime = '';
+    if (end) {
+      formattedEndTime = end.toISOString().substring(11, 19);
+    }
+
     this.eventService.editEvent({
-      id: event.id,
+      id: String(eventId),
       title: event.title,
-      start: start,
+      date: formattedStart,
+      startTime: formattedStartTime,
+      endTime: formattedEndTime,
       description: event.extendedProps['description']
-    }).subscribe(() => {
-      this.currentEvents = this.currentEvents.map(oldEvent => {
-        if (oldEvent.id === event.id) {
-          return event;
-        } else {
-          return oldEvent;
+    }).subscribe({
+      next: data => {
+        const index = this.currentEvents.findIndex(e => e.id === event.id);
+        if (index >= 0) {
+          this.currentEvents[index].setDates(start, end);
         }
-      });
+      },
+      error: error => {
+        console.log(error);
+      }
     });
   }
+
+
+
+
+
 
 
 

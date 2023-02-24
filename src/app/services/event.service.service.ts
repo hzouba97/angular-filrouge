@@ -5,6 +5,7 @@ import {Event} from "../models/event";
 import {EventInput} from "@fullcalendar/core";
 import {createEventId} from "../components/planning/event-utils";
 import * as moment from 'moment';
+import {environment} from "@ng-bootstrap/ng-bootstrap/environment";
 
 
 
@@ -46,13 +47,24 @@ export class EventServiceService {
 
 
 
-  editEvent(event: EventInput): Observable<EventInput> {
-    return this.http.put<EventInput>(`http://localhost:8080/api/events/${event.id}`, {
-      title: event.title,
-      date: event.start,
-      description: event['description']
-    });
+  editEvent(eventInput: EventInput): Observable<EventInput> {
+    let event: Event = {
+      id: Number(eventInput.id),
+      title: String(eventInput.title),
+      description: eventInput['description'],
+      date: typeof eventInput.date === 'string' ? new Date(eventInput.date.replace(/-/g, '/')) : Array.isArray(eventInput.date) ? undefined : eventInput.date ? new Date(Number(eventInput.date)) : undefined,
+      startTime: eventInput['startTime'] ? new Date(`1970-01-01T${eventInput['startTime']}Z`) : undefined,
+      endTime: eventInput['endTime'] ? new Date(`1970-01-01T${eventInput['endTime']}Z`) : undefined,
+    };
+    console.log('EVENT avant envoi:', JSON.stringify(event));
+    return this.http.put<EventInput>(`http://localhost:8080/api/events/${event.id}`,event);
   }
+
+
+
+
+
+
 
 
 
