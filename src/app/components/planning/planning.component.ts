@@ -15,6 +15,7 @@ import listPlugin from '@fullcalendar/list';
 import {createEventId, INITIAL_EVENTS} from "./event-utils";
 import {Event} from "../../models/event";
 import {EventServiceService} from "../../services/event.service.service";
+import * as moment from "moment";
 
 // import { INITIAL_EVENTS, createEventId } from './event-utils';
 //import {EventApiSpring} from './event-from-API'
@@ -97,25 +98,53 @@ export class PlanningComponent implements OnInit {
   }
 
 
-
   handleEventChange(changeInfo: EventChangeArg) {
     const event = changeInfo.event;
-    const start: DateInput | undefined = event.start ? event.start : undefined;
-    this.eventService.editEvent({
-      id: event.id,
+    const start = event.start;
+    const end = event.end;
+    const eventId = parseInt(event.id, 10);
+
+    if (!start || !end) {
+      return;
+    }
+
+    const formattedStart = start.toISOString().substring(0, 10);
+    const formattedStartTime = start.toISOString().substring(11, 19);
+
+    let formattedEndTime = '';
+    if (end) {
+      formattedEndTime = end.toISOString().substring(11, 19);
+    }
+
+    const editedEvent: Event = {
+      id: eventId,
       title: event.title,
-      start: start,
-      description: event.extendedProps['description']
-    }).subscribe(() => {
-      this.currentEvents = this.currentEvents.map(oldEvent => {
-        if (oldEvent.id === event.id) {
-          return event;
-        } else {
-          return oldEvent;
+      date: new Date(formattedStart),
+      startTime: new Date(`1970-01-01T${formattedStartTime}Z`),
+      endTime: formattedEndTime ? new Date(`1970-01-01T${formattedEndTime}Z`) : undefined,
+      description: event.extendedProps['description'] || ''
+    };
+
+    this.eventService.editEvent(editedEvent).subscribe({
+      next: data => {
+        const index = this.currentEvents.findIndex(e => e.id === event.id);
+        if (index >= 0) {
+          this.currentEvents[index].setDates(start, end);
         }
-      });
+      },
+      error: error => {
+        console.log(error);
+      }
     });
   }
+
+
+
+
+
+
+
+
 
 
 
@@ -123,13 +152,12 @@ export class PlanningComponent implements OnInit {
   events: EventInput[] = [];
 
   ngOnInit(): void {
-    this.eventService
-      .fetchEvents()
-      .subscribe(data => {
-        this.events = data;
-
-      });
+    this.eventService.fetchEvents().subscribe(data => {
+      this.events = data;
+      this.calendarOptions.initialEvents = data;
+    });
   }
+
 
 
   // events: EventInput[] = [];
