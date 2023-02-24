@@ -30,6 +30,6 @@ export class UsersDetailsComponent implements OnInit {
     }
 
   editUser() {
-    this.router.navigate(['/edit-user/:id']);
+    this.router.navigate([`/edit-user/${this.users.id}`]);
   }
 }

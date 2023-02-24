@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from "../../services/users.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Users } from "../../models/users";
+import {map, mergeMap} from "rxjs";
 
 @Component({
   selector: 'app-edit-user',
@@ -9,6 +10,9 @@ import { Users } from "../../models/users";
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
+
+
+
   user: Users = {
     id: 7,
     admin: false,
@@ -30,11 +34,23 @@ export class EditUserComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
+  // ngOnInit(): void {
+  //   const id = this.route.snapshot.paramMap.get('id');
+  //   this.usersService.fetchUsersById(Number(id)).subscribe(user => {
+  //     this.user = user;
+  //   });
+  // }
+
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.usersService.fetchUsersById(Number(id)).subscribe(user => {
-      this.user = user;
-    });
+    this.route.params
+      .pipe(
+        map(params => params['id']),
+        mergeMap((userId:number) => this.usersService.fetchUsersById(userId))
+      )
+      .subscribe((user:Users) => {
+        this.user = user;
+      });
+
   }
 
   updateUser(): void {
