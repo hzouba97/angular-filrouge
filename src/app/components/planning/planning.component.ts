@@ -136,6 +136,7 @@ export class PlanningComponent implements OnInit {
         console.log(error);
       }
     });
+    location.reload();
   }
 
 
