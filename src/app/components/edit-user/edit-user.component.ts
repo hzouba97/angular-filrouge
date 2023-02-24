@@ -1,41 +1,46 @@
-import { Component } from '@angular/core';
-import {UsersService} from "../../services/users.service";
-import {Router} from "@angular/router";
-import {Users} from "../../models/users";
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from "../../services/users.service";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Users } from "../../models/users";
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
-export class EditUserComponent {
-  users = {
-    id: '',
+export class EditUserComponent implements OnInit {
+  user: Users = {
+    id: 7,
     admin: false,
     username: '',
     firstname: '',
     lastname: '',
     mail: '',
     password: '',
-    activate: true,
+    activate: false,
     ville: '',
     gender: '',
     birthdate: '',
-    phoneNumber: '',
+    phoneNumber: ''
   };
 
-  
+  constructor(
+    private usersService: UsersService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
-
-  constructor(private usersService:UsersService, private router: Router) {
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.usersService.fetchUsersById(Number(id)).subscribe(user => {
+      this.user = user;
+    });
   }
 
-  updateUser(){
-    this.usersService
-      .editUser(this.users)
-      .subscribe(ok => {alert('ok')})
-    this.router.navigate(['users']);
+  updateUser(): void {
+    this.usersService.editUser(this.user).subscribe(() => {
+      this.router.navigate(['/users']);
+    });
   }
-
 
 }

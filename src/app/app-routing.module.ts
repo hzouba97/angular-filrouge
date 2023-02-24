@@ -6,6 +6,7 @@ import {PlanningComponent} from "./components/planning/planning.component";
 import {WeatherApiComponent} from "./components/weather-api/weather-api.component";
 import {AddUsersComponent} from "./components/add-users/add-users.component";
 import {AddEventsComponent} from "./components/add-events/add-events.component";
+import {EditUserComponent} from "./components/edit-user/edit-user.component";
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'users/:id/planning', component: PlanningComponent},
   {path:'add-users', component: AddUsersComponent},
   {path:'add-event', component: AddEventsComponent},
+  {path: 'edit-user/:id', component: EditUserComponent }
 ];
 
 @NgModule({
