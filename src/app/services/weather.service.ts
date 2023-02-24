@@ -15,6 +15,10 @@ export class WeatherService {
 
 
       getWeatherDetails() {
-        return this.http.get<any>('https://api.openweathermap.org/data/2.5/forecast?q=Paris,fra&units=metric&appid=1ffaa80ea2d33fe521d4f7f22167adcf').pipe(map(res => res));
+        return this.http.get<any>('https://api.openweathermap.org/data/2.5/forecast?q=Paris,fr&units=metric&appid=0096b809430b4da65543e5a54a4c149e').pipe(map(res => res));
+      }
+
+      getCityWeather() {
+    return this.http.get<any>('https://api.openweathermap.org/data/2.5/weather?q={user.city}&appid={0096b809430b4da65543e5a54a4c149e}').pipe(map(res => res));
       }
 }
