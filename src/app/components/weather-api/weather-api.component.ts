@@ -15,6 +15,7 @@ export class WeatherApiComponent {
   country!:String;
   details:any[] = [];
   chart:any;
+  ville: any;
   constructor(private weatherservice:WeatherService){
     console.log("constructor called");
   }
@@ -30,9 +31,11 @@ export class WeatherApiComponent {
       }
       this.city=data['city'].name;
       this.country=data['city'].country;
-
-
     });
+
+    this.weatherservice.getCityWeather().subscribe((data) =>{
+
+    })
   }
 
 }

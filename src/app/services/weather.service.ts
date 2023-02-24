@@ -19,6 +19,6 @@ export class WeatherService {
       }
 
       getCityWeather() {
-    return this.http.get<any>('https://api.openweathermap.org/data/2.5/weather?q={user.city}&appid={0096b809430b4da65543e5a54a4c149e}').pipe(map(res => res));
+    return this.http.get<any>('https://api.openweathermap.org/data/2.5/weather?q={user.ville}&appid={0096b809430b4da65543e5a54a4c149e}').pipe(map(res => res));
       }
 }
