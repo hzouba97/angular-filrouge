@@ -22,6 +22,27 @@ export class UsersService {
     return this.http.post<void>('http://localhost:8080/api/users/add',createUsers);
   }
 
+  editUser(user: Users): Observable<Users>{
+
+    const data: Users = {
+      id: user.id,
+      admin:  user.admin,
+      username:  user.username,
+      firstname:  user.firstname,
+      lastname:  user.lastname,
+      mail:  user.mail,
+      password:  user.password,
+      activate:  user.activate,
+      ville:  user.ville,
+      gender:  user.gender,
+      birthdate:  user.birthdate,
+      phoneNumber:  user.phoneNumber
+
+
+    }
+    return this.http.put<Users>(`http://localhost:8080/api/users/${user.id}`, data);
+  }
+
 
 
 }
