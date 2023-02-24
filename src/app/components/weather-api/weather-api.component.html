@@ -4,11 +4,52 @@
 </div>
 <div class="container">
 
-  <div>
-    <h3>Votre ville : {{ville}}</h3>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="col-sm-12 text-center">
+
+        <div class="input-group mt-5">
+          <input class="form control" type="text" #userInput placeholder="Entrez un nom de ville">
+          <div class="input-group-append">
+            <button class="input-group-text btn btn-outline-primary" (click)="getCity({city : userInput.value})">Rechercher</button>
+          </div>
+        </div>
+
+        <h2>Météo à {{ weather.name }}, {{ weather.sys.country }}</h2>
+      </div>
+
+      <div class="col-sm-12">
+        <span class="temp">
+        <img  src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" alt="">
+        {{ weather.main.temp | number:'1.0-0'}} °C</span>
+        <p class="text-uppercase font-italic font-weight_bold">{{ weather.weather[0].description }}</p>
+      </div>
+
+      <span class="badge badge-warning">{{ weather.main.temp_max }} °C</span>
+      <span class="badge badge-secondary">{{weather.main.temp_min}} °C</span>
+
+      <div class="card-body">
+        <h5>{{ weather.weather.description }} </h5>
+
+        <h6>Vent : {{ weather.main.speed}} m/s  </h6>
+
+        <h6>Pression : {{ weather.main.pressure }}  hPa</h6>
+
+        <h6>Humidité : {{ weather.main.humidity }} %</h6>
+
+        <h6>Levé du soleil : {{ weather.sys.sunrise * 1000 | date:'H:mm' }}</h6>
+
+        <h6>Couché du soleil : {{ weather.sys.sunset * 1000 | date:'H:mm' }}</h6>
+
+        <h6>Latitude - Longitude : {{ weather.coord .lat }}, {{ weather.coord.lon }}</h6>
+      </div>
+
+    </div>
   </div>
 
-  <div class="alert alert-info" role="alert">
+
+
+<!--  <div class="alert alert-info" role="alert">
     <h3>Ville : {{city}},{{country}}</h3>
   </div>
 
@@ -30,12 +71,12 @@
 
         <h6>Vent : {{item['wind'].speed}} m/s  </h6>
 
-        <h6>Pression : {{item['main'].pressure}}  hPa</h6>
+        <h6>Pression : {{ weather.main.pressure }}  hPa</h6>
 
-        <h6>Humidité : {{item['main'].humidity}} %</h6>
+        <h6>Humidité : {{ weather.main.humidity }} %</h6>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
 
 

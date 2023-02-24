@@ -1,24 +1,51 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 import {map} from "rxjs";
+import {UsersService} from "./users.service";
 @Injectable()
 export class WeatherService {
 
-  constructor(public http: HttpClient) {
+  url = 'https://api.openweathermap.org/data/2.5/weather';
+  apiKey = '0096b809430b4da65543e5a54a4c149e';
+
+
+  constructor(public http: HttpClient,
+  private usersService: UsersService) {
     console.log('open weather service connected');
    }
+
+   usersVille: string = 'Paris';
 
    getPost() {
     return this.http.get('https://jsonplaceholder.typicode.com/posts').pipe(map(res => res));
       }
 
-
+/*
       getWeatherDetails() {
         return this.http.get<any>('https://api.openweathermap.org/data/2.5/forecast?q=Paris,fr&units=metric&appid=0096b809430b4da65543e5a54a4c149e').pipe(map(res => res));
       }
 
       getCityWeather() {
-    return this.http.get<any>('https://api.openweathermap.org/data/2.5/weather?q={user.ville}&appid={0096b809430b4da65543e5a54a4c149e}').pipe(map(res => res));
+        return this.http.get<any>(`https://api.openweathermap.org/data/2.5/weather?q=${(this.usersVille)}&appid={0096b809430b4da65543e5a54a4c149e}`).pipe(map(res => res));
+      }*/
+
+      getWeatherDataByCords({lat, lon}: { lat: any, lon: any }){
+        let params = new HttpParams()
+          .set('lat', lat)
+          .set('lon', lon)
+          .set('units', 'metrics')
+          .set('appid', this.apiKey)
+
+        return this.http.get(this.url, { params });
+      }
+
+      getWeatherDataByCityName(city: string){
+        let params= new HttpParams()
+          .set('q', city)
+          .set('units', 'metrics')
+          .set('appid', this.apiKey)
+
+        return this.http.get(this.url, { params });
       }
 }
