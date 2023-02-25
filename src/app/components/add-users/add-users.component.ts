@@ -20,7 +20,7 @@ export class AddUsersComponent {
     ville: '',
     gender: '',
     birthdate: '',
-    phoneNumber: '',
+    phone: '',
   };
 
   constructor(private usersService:UsersService, private router: Router) {

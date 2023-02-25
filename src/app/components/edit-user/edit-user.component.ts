@@ -25,7 +25,7 @@ export class EditUserComponent implements OnInit {
     ville: '',
     gender: '',
     birthdate: '',
-    phoneNumber: ''
+    phone: ''
   };
 
   constructor(

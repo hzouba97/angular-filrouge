@@ -42,7 +42,7 @@
 
 <div class="form-group">
   <label for="phone">Phone:</label>
-  <input type="tel" [(ngModel)]="user.phoneNumber" class="form-control" id="phone" name="phone" required *ngIf="user">
+  <input type="text" [(ngModel)]="user.phone" class="form-control" id="phone" name="phone" required *ngIf="user">
 </div>
 <div class="text-center">
   <button type="submit" class="btn btn-primary" (click)="updateUser()">Save Changes</button>

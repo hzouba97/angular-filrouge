@@ -36,7 +36,7 @@ export class UsersService {
       ville:  user.ville,
       gender:  user.gender,
       birthdate:  user.birthdate,
-      phoneNumber:  user.phoneNumber
+      phone:  user.phone
 
 
     }
