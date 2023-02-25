@@ -10,6 +10,6 @@ export interface Users {
   ville: string;
   gender: string;
   birthdate: string;
-  phoneNumber: string;
+  phone: string;
 
 }

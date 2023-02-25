@@ -15,6 +15,7 @@ import {WeatherService} from "./services/weather.service";
 import { AddUsersComponent } from './components/add-users/add-users.component';
 import {FormsModule} from "@angular/forms";
 import { AddEventsComponent } from './components/add-events/add-events.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AddEventsComponent } from './components/add-events/add-events.component
     PlanningComponent,
     AddUsersComponent,
     AddEventsComponent,
-    WeatherApiComponent
+    WeatherApiComponent,
+    EditUserComponent
   ],
     imports: [
         BrowserModule,

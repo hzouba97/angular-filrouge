@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Users} from "../../models/users";
 import {map, mergeMap} from "rxjs";
 import {UsersService} from "../../services/users.service";
@@ -12,7 +12,9 @@ import {UsersService} from "../../services/users.service";
 export class UsersDetailsComponent implements OnInit {
 
   users!: Users;
-  constructor(private usersService: UsersService, private activateRoute: ActivatedRoute) {
+  constructor(private usersService: UsersService,
+              private activateRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,4 +28,8 @@ export class UsersDetailsComponent implements OnInit {
       });
 
     }
+
+  editUser() {
+    this.router.navigate([`/edit-user/${this.users.id}`]);
+  }
 }

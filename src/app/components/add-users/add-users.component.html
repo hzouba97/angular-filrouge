@@ -23,37 +23,37 @@
     </div>
 
     <div class="form-group">
-      <label for="motdepasse">Mot de passe:</label>
+      <label for="motdepasse">Password:</label>
       <input type="password" [(ngModel)]="users.password" class="form-control" id="motdepasse" name="motdepasse" required>
     </div>
 
-    <div class="form-group"> 
-      <label for="ville">Ville:</label>
+    <div class="form-group">
+      <label for="ville">City:</label>
       <input type="text" [(ngModel)]="users.ville" class="form-control" id="ville" name="ville" required>
     </div>
 
     <div class="form-group">
       <label for="genre">Genre:</label>
       <select [(ngModel)]="users.gender" class="form-control" id="genre" name="genre">
-        <option value="homme">Homme</option>
-        <option value="femme">Femme</option>
-        <option value="autre">Autre</option>
+        <option value="homme">M</option>
+        <option value="femme">F</option>
+        <option value="autre">Other</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="date_naissance">Date de naissance:</label>
+      <label for="date_naissance">Birthdate:</label>
       <input type="date" [(ngModel)]="users.birthdate" class="form-control" id="date_naissance" name="date_naissance" required>
     </div>
 
     <div class="form-group">
-      <label for="telephone">Numéro de téléphone:</label>
-      <input type="tel" [(ngModel)]="users.phoneNumber" class="form-control" id="telephone" name="telephone" required pattern="\d{10}">
-      <small class="form-text text-muted">Entrez un numéro de téléphone valide (10 chiffres).</small>
+      <label for="telephone">Phone number:</label>
+      <input type="tel" [(ngModel)]="users.phone" class="form-control" id="telephone" name="telephone" required pattern="\d{10}">
+      <small class="form-text text-muted">Enter a valid phone number (10 digits).</small>
     </div>
-    
+
 <div class="text-center">
-  <button type="submit" class="btn btn-primary"  (click)="addUsers()"> S'inscrire</button>
+  <button type="submit" class="btn btn-primary"  (click)="addUsers()">Register</button>
 </div>
 
 </div>
