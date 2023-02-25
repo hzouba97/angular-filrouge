@@ -19,23 +19,6 @@ export class WeatherApiComponent implements OnInit {
   }
   ngOnInit(){
     this.getLocation();
-
-   /* this.weatherservice.getWeatherDetails().subscribe((data)=>{
-
-      console.log(data.list);
-      // this.details=data['list'];
-
-      for(let i=0;i<data.list.length;i+=8)
-      {
-        this.details.push(data.list[i]);
-      }
-      this.city=data['city'].name;
-      this.country=data['city'].country;
-    });
-
-    this.weatherservice.getCityWeather().subscribe((data) =>{
-
-    })*/
   }
 
   getLocation(){

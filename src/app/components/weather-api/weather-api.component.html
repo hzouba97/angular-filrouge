@@ -6,7 +6,7 @@
 
   <div class="row">
     <div class="col-md-6 offset-md-3">
-      <div class="col-sm-12 text-center">
+      <div class=" card col-md-15 col-sm-12 text-center">
 
         <div class="input-group mt-5">
           <input class="form control" type="text" #userInput placeholder="Entrez un nom de ville">
@@ -16,7 +16,7 @@
         </div>
 
         <h2>Météo à {{ weather.name }}, {{ weather.sys.country }}</h2>
-      </div>
+
 
       <div class="col-sm-12">
         <span class="temp">
@@ -25,13 +25,15 @@
         <p class="text-uppercase font-italic font-weight_bold">{{ weather.weather[0].description }}</p>
       </div>
 
-      <span class="badge badge-warning">{{ weather.main.temp_max }} °C</span>
-      <span class="badge badge-secondary">{{weather.main.temp_min}} °C</span>
+      <div class="tempMinMax">
+        <span class="badge badge-warning">Max {{ weather.main.temp_max }} °C</span>
+        <span class="badge badge-secondary">Min {{weather.main.temp_min}} °C</span>
+      </div>
 
       <div class="card-body">
         <h5>{{ weather.weather.description }} </h5>
 
-        <h6>Vent : {{ weather.main.speed}} m/s  </h6>
+        <h6>Vent : {{ weather.wind.speed }} m/s  </h6>
 
         <h6>Pression : {{ weather.main.pressure }}  hPa</h6>
 
@@ -43,11 +45,10 @@
 
         <h6>Latitude - Longitude : {{ weather.coord .lat }}, {{ weather.coord.lon }}</h6>
       </div>
-
+      </div>
     </div>
   </div>
-
-
+</div>
 
 <!--  <div class="alert alert-info" role="alert">
     <h3>Ville : {{city}},{{country}}</h3>
@@ -77,7 +78,9 @@
       </div>
     </div>
   </div>-->
-</div>
+
+
+
 
 
 

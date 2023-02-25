@@ -15,21 +15,6 @@ export class WeatherService {
     console.log('open weather service connected');
    }
 
-   usersVille: string = 'Paris';
-
-   getPost() {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts').pipe(map(res => res));
-      }
-
-/*
-      getWeatherDetails() {
-        return this.http.get<any>('https://api.openweathermap.org/data/2.5/forecast?q=Paris,fr&units=metric&appid=0096b809430b4da65543e5a54a4c149e').pipe(map(res => res));
-      }
-
-      getCityWeather() {
-        return this.http.get<any>(`https://api.openweathermap.org/data/2.5/weather?q=${(this.usersVille)}&appid={0096b809430b4da65543e5a54a4c149e}`).pipe(map(res => res));
-      }*/
-
       getWeatherDataByCords({lat, lon}: { lat: any, lon: any }){
         let params = new HttpParams()
           .set('lat', lat)
