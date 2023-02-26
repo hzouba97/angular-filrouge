@@ -7,6 +7,8 @@ import {WeatherApiComponent} from "./components/weather-api/weather-api.componen
 import {AddUsersComponent} from "./components/add-users/add-users.component";
 import {AddEventsComponent} from "./components/add-events/add-events.component";
 import {EditUserComponent} from "./components/edit-user/edit-user.component";
+import {EventDetailsComponent} from "./components/event-details/event-details.component";
+import {EditEventComponent} from "./components/edit-event/edit-event.component";
 
 
 const routes: Routes = [
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path:'users/:id/planning', component: PlanningComponent},
   {path:'add-users', component: AddUsersComponent},
   {path:'add-event', component: AddEventsComponent},
-  {path: 'edit-user/:id', component: EditUserComponent },
+  {path: 'event-details/:id', component: EventDetailsComponent },
+  {path: 'edit-event/:id', component: EditEventComponent }
+
 ];
 
 @NgModule({

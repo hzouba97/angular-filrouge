@@ -14,7 +14,7 @@ export class EditUserComponent implements OnInit {
 
 
   user: Users = {
-    id: 7,
+    id: 0,
     admin: false,
     username: '',
     firstname: '',
@@ -50,7 +50,6 @@ export class EditUserComponent implements OnInit {
       .subscribe((user:Users) => {
         this.user = user;
       });
-
   }
 
   updateUser(): void {

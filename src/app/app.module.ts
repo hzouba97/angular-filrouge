@@ -16,6 +16,8 @@ import { AddUsersComponent } from './components/add-users/add-users.component';
 import {FormsModule} from "@angular/forms";
 import { AddEventsComponent } from './components/add-events/add-events.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
+import { EventDetailsComponent } from './components/event-details/event-details.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     AddEventsComponent,
     WeatherApiComponent,
     EditUserComponent,
+    EditEventComponent,
+    EventDetailsComponent,
   ],
     imports: [
         BrowserModule,
