@@ -41,7 +41,7 @@ export class EditEventComponent {
 
 
   updateEvent(): void {
-    this.eventService.editEvent(this.event).subscribe(() => {
+    this.eventService.editUserForm(this.event).subscribe(() => {
       this.router.navigate([`/event-details/${this.event.id}`] );
     });
   }

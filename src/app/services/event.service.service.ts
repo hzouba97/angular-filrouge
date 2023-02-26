@@ -64,6 +64,21 @@ export class EventServiceService {
     return this.http.put<Event>(`http://localhost:8080/api/events/${event.id}`, data);
   }
 
+  editUserForm(event: Event): Observable<Event>{
+
+    const data: Event = {
+      id: event.id,
+      title: event.title,
+      description: event.title,
+      date:  event.date,
+      startTime:  event.startTime,
+      endTime:  event.endTime,
+
+
+    }
+    return this.http.put<Event>(`http://localhost:8080/api/events/${event.id}`, data);
+  }
+
 
 
 
