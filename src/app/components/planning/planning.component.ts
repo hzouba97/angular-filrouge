@@ -18,6 +18,7 @@ import {EventServiceService} from "../../services/event.service.service";
 import * as moment from "moment";
 import tippy from "tippy.js";
 import {Router} from "@angular/router";
+import {getElSeg} from "@fullcalendar/core/internal";
 
 
 
@@ -96,21 +97,30 @@ export class PlanningComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-   
-    const date = selectInfo.startStr;
+    if (confirm(`Do you want to create event ?`)){
+      const date = selectInfo.startStr;
     this.router.navigate(['add-event'], { queryParams: { date: date } });
-
-  }
-
-  handleEventClick(clickInfo: EventClickArg) {
-    if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
-      clickInfo.event.remove();
-      const eventId = parseInt(clickInfo.event.id, 10); // conversion en nombre
-      this.eventService.deleteEvent(eventId).subscribe(() => {
-        this.currentEvents = this.currentEvents.filter(event => event.id !== clickInfo.event.id);
-      });
     }
   }
+
+  //TODO: on click: route sur event details. Dans event details: deux boutons: 1 del et 1 edit.
+
+  handleEventClick(clickInfo: EventClickArg) {
+    if (confirm(`Do you wanna see the event details ?'${clickInfo.event.title}'`)) {
+      //this.router.navigate(['event-details/:id']);
+      this.router.navigate([`event-details/${clickInfo.event.id}`]);
+    //   clickInfo.event.remove();
+    //   const eventId = parseInt(clickInfo.event.id, 10); // conversion en nombre
+    //   this.eventService.deleteEvent(eventId).subscribe(() => {
+    //     this.currentEvents = this.currentEvents.filter(event => event.id !== clickInfo.event.id);
+    //   });
+    //
+    //
+    // } else {this.router.navigate(['add-users'])}
+    // ;
+  }
+  }
+
 
 
   handleEvents(events: EventApi[]) {

@@ -6,6 +6,7 @@ import {EventInput} from "@fullcalendar/core";
 import {createEventId} from "../components/planning/event-utils";
 import * as moment from 'moment';
 import {environment} from "@ng-bootstrap/ng-bootstrap/environment";
+import {Users} from "../models/users";
 
 
 
@@ -44,7 +45,9 @@ export class EventServiceService {
     );
   }
 
-
+  fetchEventbyId(id: number): Observable<Event>{
+    return this.http.get<Event>(`http://localhost:8080/api/events/${id}`);
+  }
 
 
   editEvent(event: Event): Observable<Event> {
