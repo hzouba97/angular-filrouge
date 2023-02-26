@@ -64,7 +64,10 @@ export class PlanningComponent implements OnInit {
 
   <div class="card-body">
     <h5 class="card-title"> <center> ${info.event.title} </center>  </h5>
+    <hr>
+    <h6>Description:</h6>
     <p class="card-text">${info.event.extendedProps['description']} </p>
+    <br>
     <p class="card-text">${info.event._instance?.range['start']} </p>
     <p class="card-text">${info.event._instance?.range['end']} </p>
   </div>
