@@ -69,11 +69,10 @@ export class PlanningComponent implements OnInit {
     <hr>
     <h6>Description:</h6>
     <p class="card-text">${info.event.extendedProps['description']} </p>
-    <br>
-    <p class="card-text">${info.event._instance?.range['start']} </p>
-    <p class="card-text">${info.event._instance?.range['end']} </p>
-  </div>
+    <p class="card-text"><h6>Start Time:</h6> ${info.event._instance?.range['start'] ? new Date(info.event._instance.range['start']).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}</p>
+    <p class="card-text"><h6>End Time:</h6> ${info.event._instance?.range['end'] ? new Date(info.event._instance.range['end']).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : ''}</p>
 
+  </div>
 </div>
     `,
         allowHTML: true,
