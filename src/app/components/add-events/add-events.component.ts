@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {EventServiceService} from "../../services/event.service.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-events',
@@ -18,8 +18,20 @@ export class AddEventsComponent {
     endTime: '',
   };
 
-  constructor(private eventService:EventServiceService, private router: Router) {
+  constructor(private eventService:EventServiceService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
+
+  ngOnInit() {
+    const selectedDate = this.route.snapshot.queryParams['date'];
+    if (selectedDate) {
+      this.events.date = selectedDate;
+    }
+  }
+
+
+
 
   addEvent(){
     this.eventService

@@ -17,6 +17,7 @@ import {Event} from "../../models/event";
 import {EventServiceService} from "../../services/event.service.service";
 import * as moment from "moment";
 import tippy from "tippy.js";
+import {Router} from "@angular/router";
 
 
 
@@ -87,24 +88,15 @@ export class PlanningComponent implements OnInit {
   currentEvents: EventApi[] = [];
 
   constructor(private changeDetector: ChangeDetectorRef,
-              private eventService: EventServiceService) {
+              private eventService: EventServiceService,
+              private router: Router) {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    const title = prompt('Please enter a new title for your event');
-    const calendarApi = selectInfo.view.calendar;
+   
+    const date = selectInfo.startStr;
+    this.router.navigate(['add-event'], { queryParams: { date: date } });
 
-    calendarApi.unselect(); // clear date selection
-
-    if (title) {
-      calendarApi.addEvent({
-        id: createEventId(),
-        title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay
-      });
-    }
   }
 
   handleEventClick(clickInfo: EventClickArg) {
