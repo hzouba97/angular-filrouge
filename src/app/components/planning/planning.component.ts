@@ -16,6 +16,8 @@ import {createEventId, INITIAL_EVENTS} from "./event-utils";
 import {Event} from "../../models/event";
 import {EventServiceService} from "../../services/event.service.service";
 import * as moment from "moment";
+import tippy from "tippy.js";
+
 
 
 // import { INITIAL_EVENTS, createEventId } from './event-utils';
@@ -51,7 +53,30 @@ export class PlanningComponent implements OnInit {
     select: this.handleDateSelect.bind(this),
     eventClick: this.handleEventClick.bind(this),
     eventsSet: this.handleEvents.bind(this),
-    eventChange: this.handleEventChange.bind(this)
+    eventChange: this.handleEventChange.bind(this),
+
+    eventMouseEnter: (info) => {
+      console.log(info)
+      tippy(info.el, {
+        content: `
+
+      <div class="card" style="width: 18rem;">
+
+  <div class="card-body">
+    <h5 class="card-title"> <center> ${info.event.title} </center>  </h5>
+    <p class="card-text">${info.event.extendedProps['description']} </p>
+    <p class="card-text">${info.event._instance?.range['start']} </p>
+    <p class="card-text">${info.event._instance?.range['end']} </p>
+  </div>
+
+</div>
+    `,
+        allowHTML: true,
+        interactive: true,
+        placement: 'top',
+        theme: 'light',
+      });
+    },
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:

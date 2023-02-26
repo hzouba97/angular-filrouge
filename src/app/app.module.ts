@@ -28,7 +28,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     AddUsersComponent,
     AddEventsComponent,
     WeatherApiComponent,
-    EditUserComponent
+    EditUserComponent,
   ],
     imports: [
         BrowserModule,
