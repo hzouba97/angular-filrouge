@@ -9,6 +9,7 @@ import {AddEventsComponent} from "./components/add-events/add-events.component";
 import {EditUserComponent} from "./components/edit-user/edit-user.component";
 import {EventDetailsComponent} from "./components/event-details/event-details.component";
 import {EditEventComponent} from "./components/edit-event/edit-event.component";
+import {LoginComponent} from "./components/login/login.component";
 
 
 const routes: Routes = [
@@ -20,8 +21,8 @@ const routes: Routes = [
   {path:'add-users', component: AddUsersComponent},
   {path:'add-event', component: AddEventsComponent},
   {path: 'event-details/:id', component: EventDetailsComponent },
-  {path: 'edit-event/:id', component: EditEventComponent }
-
+  {path: 'edit-event/:id', component: EditEventComponent },
+  {path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

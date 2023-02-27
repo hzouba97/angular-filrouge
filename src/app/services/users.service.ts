@@ -10,8 +10,8 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  fetchUsers(): Observable<Users[]>{
-    return this.http.get<Users[]>('http://localhost:8080/api/users');
+  fetchUsers(): Observable<any>{
+    return this.http.get<Users[]>('http://localhost:8080/api/users',{ responseType: 'json' });
   }
 
   fetchUsersById(id: number): Observable<Users>{

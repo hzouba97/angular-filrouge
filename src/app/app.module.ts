@@ -18,6 +18,9 @@ import { AddEventsComponent } from './components/add-events/add-events.component
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditEventComponent } from './components/edit-event/edit-event.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import {httpInterceptorProviders} from "../helpers/auth.interceptor";
 
 
 @NgModule({
@@ -33,6 +36,8 @@ import { EventDetailsComponent } from './components/event-details/event-details.
     EditUserComponent,
     EditEventComponent,
     EventDetailsComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
     imports: [
         BrowserModule,
@@ -45,7 +50,7 @@ import { EventDetailsComponent } from './components/event-details/event-details.
         // register FullCalendar with the app
     ],
   providers: [
-     WeatherService
+     WeatherService,httpInterceptorProviders
      ],
   bootstrap: [AppComponent]
 })
