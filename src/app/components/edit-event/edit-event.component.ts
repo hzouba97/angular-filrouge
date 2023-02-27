@@ -45,6 +45,4 @@ export class EditEventComponent {
       this.router.navigate([`users/:id/planning`] );
     });
   }
-
-
 }
