@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import {map} from "rxjs";
-import {UsersService} from "./users.service";
+import { UsersService } from "./users.service";
 @Injectable()
 export class WeatherService {
 
@@ -19,7 +19,7 @@ export class WeatherService {
         let params = new HttpParams()
           .set('lat', lat)
           .set('lon', lon)
-          .set('units', 'metrics')
+          .set('units', 'metric')
           .set('appid', this.apiKey)
 
         return this.http.get(this.url, { params });
@@ -28,7 +28,7 @@ export class WeatherService {
       getWeatherDataByCityName(city: string){
         let params= new HttpParams()
           .set('q', city)
-          .set('units', 'metrics')
+          .set('units', 'metric')
           .set('appid', this.apiKey)
 
         return this.http.get(this.url, { params });
