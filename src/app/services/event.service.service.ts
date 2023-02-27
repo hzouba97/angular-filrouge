@@ -25,7 +25,7 @@ export class EventServiceService {
 
 
   fetchEvents(): Observable<EventInput[]> {
-    return this.http.get<Event[]>('http://localhost:8080/api/events').pipe(
+    return this.http.get<Event[]>('http://localhost:8080/api/events'+ 'user',{ responseType: 'json' }).pipe(
       map((data) => {
         const events: EventInput[] = [];
         data.map((e) => {

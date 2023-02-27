@@ -13,7 +13,7 @@ import {LoginComponent} from "./components/login/login.component";
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'users', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path:'users', component: UsersListComponent},
   {path:'users/weather/:id', component: WeatherApiComponent},
   {path:'users/:id', component: UsersDetailsComponent},
@@ -22,7 +22,8 @@ const routes: Routes = [
   {path:'add-event', component: AddEventsComponent},
   {path: 'event-details/:id', component: EventDetailsComponent },
   {path: 'edit-event/:id', component: EditEventComponent },
-  {path: 'login', component: LoginComponent }
+  {path: 'login', component: LoginComponent },
+  {path: 'users', component: UsersDetailsComponent }
 ];
 
 @NgModule({
