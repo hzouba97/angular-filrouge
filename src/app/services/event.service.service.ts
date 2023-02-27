@@ -4,6 +4,8 @@ import {catchError, map, Observable, throwError} from "rxjs";
 import {Event} from "../models/event";
 import {EventInput} from "@fullcalendar/core";
 import {createEventId} from "../components/planning/event-utils";
+import * as moment from 'moment';
+
 
 
 
@@ -21,23 +23,28 @@ export class EventServiceService {
 
 
   fetchEvents(): Observable<EventInput[]> {
-    return this.http.get<Event[]>('http://localhost:8080/api/events')
-      .pipe(map((data) => {
-          let events : EventInput[]=[];
-          data.map(e => {
-            let event: EventInput = {
-              title: e.title,
-                    start: new Date(e.date),
-                    end: new Date(e.date),
-                    description: e.description,
-                    id: String(e.id), // Convertir l'ID en string
-            };
-            events.push(event);
-          });
-      return events;
-        }
-      ));
+    return this.http.get<Event[]>('http://localhost:8080/api/events').pipe(
+      map((data) => {
+        const events: EventInput[] = [];
+        data.map((e) => {
+          const start = moment(`${e.date}T${e.startTime}`).toDate();
+          const end = moment(`${e.date}T${e.endTime}`).toDate();
+          const event: EventInput = {
+            title: e.title,
+            start: start,
+            end: end,
+            description: e.description,
+            id: String(e.id),
+          };
+          events.push(event);
+        });
+        return events;
+      })
+    );
   }
+
+
+
 
   editEvent(event: EventInput): Observable<EventInput> {
     return this.http.put<EventInput>(`http://localhost:8080/api/events/${event.id}`, {

@@ -14,6 +14,8 @@ export class AddEventsComponent {
     date: '',
     description: '',
     title: '',
+    startTime: '',
+    endTime: '',
   };
 
   constructor(private eventService:EventServiceService, private router: Router) {
