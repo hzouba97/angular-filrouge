@@ -14,7 +14,7 @@ import {EditEventComponent} from "./components/edit-event/edit-event.component";
 const routes: Routes = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
   {path:'users', component: UsersListComponent},
-  {path:'users/weather', component: WeatherApiComponent},
+  {path:'users/weather/:id', component: WeatherApiComponent},
   {path:'users/:id', component: UsersDetailsComponent},
   {path:'users/:id/planning', component: PlanningComponent},
   {path:'add-users', component: AddUsersComponent},

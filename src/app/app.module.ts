@@ -41,7 +41,7 @@ import { EventDetailsComponent } from './components/event-details/event-details.
         NgbModule,
         BrowserModule,
         FullCalendarModule,
-        FormsModule,
+        FormsModule
         // register FullCalendar with the app
     ],
   providers: [
