@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  logoutLoading = false;
 
   constructor(private storageService: StorageService, private authService: AuthService, private router: Router) {
   }
@@ -24,12 +25,15 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
+    this.logoutLoading = true;
     this.authService.logout().subscribe({
       next: res => {
+        let logoutLoading = false;
         this.storageService.clean();
         this.router.navigate(['login'])
       },
       error: err => {
+        let logoutLoading = false;
         console.log(err);
       }
     });
