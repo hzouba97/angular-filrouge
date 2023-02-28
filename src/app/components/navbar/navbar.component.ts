@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../services/storage.service";
 import {AuthService} from "../../services/auth.service";
 
@@ -7,7 +7,7 @@ import {AuthService} from "../../services/auth.service";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
   private roles: string[] = [];
   isLoggedIn = false;
@@ -15,8 +15,12 @@ export class NavbarComponent {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private storageService: StorageService, private authService: AuthService) { }
+  constructor(private storageService: StorageService, private authService: AuthService) {
+  }
 
+  ngOnInit(): void {
+    this.isLoggedIn = this.storageService.isLoggedIn();
+  }
 
   logout(): void {
     this.authService.logout().subscribe({
