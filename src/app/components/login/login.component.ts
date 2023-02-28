@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {StorageService} from "../../services/storage.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,9 @@ import {StorageService} from "../../services/storage.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  userConnected!: User;
+
   form: any = {
     username: null,
     password: null
@@ -15,7 +19,6 @@ export class LoginComponent implements OnInit {
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
 
   constructor(private authService: AuthService, private storageService: StorageService) {
   }
@@ -23,7 +26,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
-      this.roles = this.storageService.getUser().roles;
+      this.userConnected = this.storageService.getUser();
     }
   }
 
@@ -37,7 +40,6 @@ export class LoginComponent implements OnInit {
 
           this.isLoginFailed = false;
           this.isLoggedIn = true;
-          this.roles = this.storageService.getUser().roles;
           this.reloadPage();
         },
         error: err => {
