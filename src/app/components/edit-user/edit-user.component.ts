@@ -52,7 +52,7 @@ export class EditUserComponent implements OnInit {
 
   updateUser(): void {
     this.usersService.editUser(this.user).subscribe(() => {
-      this.router.navigate(['/users']);
+      this.router.navigate([`/users/${this.user.id}`] );
     });
   }
 

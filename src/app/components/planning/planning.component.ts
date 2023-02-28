@@ -54,8 +54,9 @@ export class PlanningComponent implements OnInit {
     <h6>Description:</h6>
     <p class="card-text">${info.event.extendedProps['description']} </p>
     <br>
-    <p class="card-text">${info.event._instance?.range['start']} </p>
-    <p class="card-text">${info.event._instance?.range['end']} </p>
+    <p class="card-text">${info.event._instance?.range['start'].toLocaleString('en-US', {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'})}</p>
+    <p class="card-text">${info.event._instance?.range['end'].toLocaleString('en-US', {year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric'})}</p>
+
   </div>
 
 </div>
