@@ -11,5 +11,4 @@ export interface Users {
   gender: string;
   birthdate: string;
   phone: string;
-
 }
