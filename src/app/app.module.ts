@@ -20,6 +20,7 @@ import {EventDetailsComponent} from './components/event-details/event-details.co
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {httpInterceptorProviders} from "../helpers/auth.interceptor";
+import {WeatherService} from "./services/weather.service";
 
 
 @NgModule({
@@ -48,8 +49,8 @@ import {httpInterceptorProviders} from "../helpers/auth.interceptor";
     FormsModule
     // register FullCalendar with the app
   ],
-  providers: [httpInterceptorProviders],
-  bootstrap: [AppComponent]
+  providers: [httpInterceptorProviders, WeatherService],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

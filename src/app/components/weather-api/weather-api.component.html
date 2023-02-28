@@ -1,8 +1,9 @@
 <div style="text-align:center">
   <h1>Bienvenue dans votre {{ title }}</h1>
-</div>
 
-<div class="container" *ngIf="weather">
+</div>
+<div *ngIf="weather" class="container">
+
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <div class="card col-md-15 col-sm-12 text-center">
@@ -10,9 +11,7 @@
         <div class="input-group mt-5">
           <input class="form control" type="text" #userInput placeholder="Entrez un nom de ville">
           <div class="input-group-append">
-            <button class="input-group-text btn btn-outline-primary" (click)="getCity({city : userInput.value})">
-              Rechercher
-            </button>
+            <button class="input-group-text btn btn-outline-primary" (click)="getCity({city : userInput.value})">Rechercher</button>
           </div>
         </div>
 
@@ -21,7 +20,7 @@
 
         <div class="col-sm-12">
         <span class="temp">
-        <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" alt="">
+        <img  src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" alt="">
           {{ weather.main.temp | number:'1.0-0'}} °C</span>
           <p class="text-uppercase font-italic font-weight_bold">{{ weather.weather[0].description }}</p>
         </div>
@@ -34,7 +33,7 @@
         <div class="card-body">
           <h5>{{ weather.weather.description }} </h5>
 
-          <h6>Vent : {{ weather.wind.speed }} m/s </h6>
+          <h6>Vent : {{ weather.wind.speed }} m/s  </h6>
 
           <h6>Pression : {{ weather.main.pressure }}  hPa</h6>
 
@@ -44,7 +43,7 @@
 
           <h6>Couché du soleil : {{ weather.sys.sunset * 1000 | date:'H:mm' }}</h6>
 
-          <h6>Latitude - Longitude : {{ weather.coord.lat }}, {{ weather.coord.lon }}</h6>
+          <h6>Latitude - Longitude : {{ weather.coord .lat }}, {{ weather.coord.lon }}</h6>
         </div>
       </div>
     </div>

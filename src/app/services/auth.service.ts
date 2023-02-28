@@ -17,7 +17,6 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<any> {
-    httpOptions.headers = new HttpHeaders({'skip': 'true'});
     return this.http.post(
       AUTH_API + 'signin',
       {
@@ -29,7 +28,6 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    httpOptions.headers = new HttpHeaders({'skip': 'true'});
     return this.http.post(AUTH_API + 'signup', user, httpOptions);
   }
 
