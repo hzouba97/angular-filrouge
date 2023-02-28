@@ -10,7 +10,7 @@ describe('WeatherApiComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ WeatherApiComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(WeatherApiComponent);
     component = fixture.componentInstance;

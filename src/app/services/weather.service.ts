@@ -11,26 +11,26 @@ export class WeatherService {
 
 
   constructor(public http: HttpClient,
-  private usersService: UsersService) {
+              private usersService: UsersService) {
     console.log('open weather service connected');
-   }
+  }
 
-      getWeatherDataByCords({lat, lon}: { lat: any, lon: any }){
-        let params = new HttpParams()
-          .set('lat', lat)
-          .set('lon', lon)
-          .set('units', 'metric')
-          .set('appid', this.apiKey)
+  getWeatherDataByCords({lat, lon}: { lat: any, lon: any }){
+    let params = new HttpParams()
+      .set('lat', lat)
+      .set('lon', lon)
+      .set('units', 'metric')
+      .set('appid', this.apiKey)
 
-        return this.http.get(this.url, { params });
-      }
+    return this.http.get(this.url, { params });
+  }
 
-      getWeatherDataByCityName(city: string){
-        let params= new HttpParams()
-          .set('q', city)
-          .set('units', 'metric')
-          .set('appid', this.apiKey)
+  getWeatherDataByCityName(city: string){
+    let params= new HttpParams()
+      .set('q', city)
+      .set('units', 'metric')
+      .set('appid', this.apiKey)
 
-        return this.http.get(this.url, { params });
-      }
+    return this.http.get(this.url, { params });
+  }
 }

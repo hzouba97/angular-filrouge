@@ -23,7 +23,8 @@ const routes: Routes = [
   {path: 'event-details/:id', component: EventDetailsComponent },
   {path: 'edit-event/:id', component: EditEventComponent },
   {path: 'login', component: LoginComponent },
-  {path: 'users', component: UsersDetailsComponent }
+  {path: 'users', component: UsersDetailsComponent },
+  {path: 'edit-user/:id', component: EditUserComponent }
 ];
 
 @NgModule({
