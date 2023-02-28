@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import {UsersService} from "../../services/users.service";
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-add-users',
@@ -8,8 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./add-users.component.css']
 })
 export class AddUsersComponent {
-  users = {
-    id: '',
+  user: User = {
     admin: false,
     username: '',
     firstname: '',
@@ -23,14 +23,19 @@ export class AddUsersComponent {
     phone: '',
   };
 
-  constructor(private usersService:UsersService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
-  addUsers(){
-    this.usersService
-      .createUsers(this.users)
-      .subscribe(ok => {alert('ok')})
-    this.router.navigate(['users']);
+  addUsers() {
+    this.authService
+      .register(this.user)
+      .subscribe({
+        next: ok => {
+          this.router.navigate(['login']);
+        },
+        error: err => console.log(err)
+      })
+
   }
 
 }

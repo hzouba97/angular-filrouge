@@ -1,9 +1,8 @@
 <div style="text-align:center">
   <h1>Bienvenue dans votre {{ title }}</h1>
-
 </div>
-<div class="container">
 
+<div class="container" *ngIf="weather">
   <div class="row">
     <div class="col-md-6 offset-md-3">
       <div class="card col-md-15 col-sm-12 text-center">
@@ -11,40 +10,42 @@
         <div class="input-group mt-5">
           <input class="form control" type="text" #userInput placeholder="Entrez un nom de ville">
           <div class="input-group-append">
-            <button class="input-group-text btn btn-outline-primary" (click)="getCity({city : userInput.value})">Rechercher</button>
+            <button class="input-group-text btn btn-outline-primary" (click)="getCity({city : userInput.value})">
+              Rechercher
+            </button>
           </div>
         </div>
 
         <h2>Météo à {{ weather.name }}, {{ weather.sys.country }}</h2>
 
 
-      <div class="col-sm-12">
+        <div class="col-sm-12">
         <span class="temp">
-        <img  src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" alt="">
-        {{ weather.main.temp | number:'1.0-0'}} °C</span>
-        <p class="text-uppercase font-italic font-weight_bold">{{ weather.weather[0].description }}</p>
-      </div>
+        <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png" alt="">
+          {{ weather.main.temp | number:'1.0-0'}} °C</span>
+          <p class="text-uppercase font-italic font-weight_bold">{{ weather.weather[0].description }}</p>
+        </div>
 
-      <div class="tempMinMax">
-        <span class="badge badge-warning">Max {{ weather.main.temp_max }} °C</span>
-        <span class="badge badge-secondary">Min {{weather.main.temp_min}} °C</span>
-      </div>
+        <div class="tempMinMax">
+          <span class="badge badge-warning">Max {{ weather.main.temp_max }} °C</span>
+          <span class="badge badge-secondary">Min {{weather.main.temp_min}} °C</span>
+        </div>
 
-      <div class="card-body">
-        <h5>{{ weather.weather.description }} </h5>
+        <div class="card-body">
+          <h5>{{ weather.weather.description }} </h5>
 
-        <h6>Vent : {{ weather.wind.speed }} m/s  </h6>
+          <h6>Vent : {{ weather.wind.speed }} m/s </h6>
 
-        <h6>Pression : {{ weather.main.pressure }}  hPa</h6>
+          <h6>Pression : {{ weather.main.pressure }}  hPa</h6>
 
-        <h6>Humidité : {{ weather.main.humidity }} %</h6>
+          <h6>Humidité : {{ weather.main.humidity }} %</h6>
 
-        <h6>Levé du soleil : {{ weather.sys.sunrise * 1000 | date:'H:mm' }}</h6>
+          <h6>Levé du soleil : {{ weather.sys.sunrise * 1000 | date:'H:mm' }}</h6>
 
-        <h6>Couché du soleil : {{ weather.sys.sunset * 1000 | date:'H:mm' }}</h6>
+          <h6>Couché du soleil : {{ weather.sys.sunset * 1000 | date:'H:mm' }}</h6>
 
-        <h6>Latitude - Longitude : {{ weather.coord .lat }}, {{ weather.coord.lon }}</h6>
-      </div>
+          <h6>Latitude - Longitude : {{ weather.coord.lat }}, {{ weather.coord.lon }}</h6>
+        </div>
       </div>
     </div>
   </div>

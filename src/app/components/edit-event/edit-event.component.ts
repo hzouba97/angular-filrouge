@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Users} from "../../models/users";
 import {Event} from "../../models/event"
 import {UsersService} from "../../services/users.service";
 import {ActivatedRoute, Router} from "@angular/router";

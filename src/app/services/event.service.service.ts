@@ -1,14 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {catchError, map, Observable, throwError} from "rxjs";
+import {map, Observable} from "rxjs";
 import {Event} from "../models/event";
 import {EventInput} from "@fullcalendar/core";
-import {createEventId} from "../components/planning/event-utils";
 import * as moment from 'moment';
-import {environment} from "@ng-bootstrap/ng-bootstrap/environment";
-import {Users} from "../models/users";
-
-
 
 
 @Injectable({
@@ -25,7 +20,7 @@ export class EventServiceService {
 
 
   fetchEvents(): Observable<EventInput[]> {
-    return this.http.get<Event[]>('http://localhost:8080/api/events'+ 'user',{ responseType: 'json' }).pipe(
+    return this.http.get<Event[]>('http://localhost:8080/api/events', {responseType: 'json'}).pipe(
       map((data) => {
         const events: EventInput[] = [];
         data.map((e) => {
@@ -45,7 +40,7 @@ export class EventServiceService {
     );
   }
 
-  fetchEventbyId(id: number): Observable<Event>{
+  fetchEventbyId(id: number): Observable<Event> {
     return this.http.get<Event>(`http://localhost:8080/api/events/${id}`);
   }
 
@@ -64,32 +59,20 @@ export class EventServiceService {
     return this.http.put<Event>(`http://localhost:8080/api/events/${event.id}`, data);
   }
 
-  editUserForm(event: Event): Observable<Event>{
+  editUserForm(event: Event): Observable<Event> {
 
     const data: Event = {
       id: event.id,
       title: event.title,
       description: event.title,
-      date:  event.date,
-      startTime:  event.startTime,
-      endTime:  event.endTime,
+      date: event.date,
+      startTime: event.startTime,
+      endTime: event.endTime,
 
 
     }
     return this.http.put<Event>(`http://localhost:8080/api/events/${event.id}`, data);
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   // private eventsUrl = 'http://localhost:8080/api/events';
@@ -101,7 +84,7 @@ export class EventServiceService {
     return this.http.put<void>(`http://localhost:8080/api/events/${event.id}`, event);
   }
 
-  deleteEvent(eventid: number): Observable<EventInput>{
+  deleteEvent(eventid: number): Observable<EventInput> {
     return this.http.delete<EventInput>(`http://localhost:8080/api/events/${eventid}`);
   }
 

@@ -1,29 +1,13 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {
-  CalendarOptions,
-  DateInput,
-  DateSelectArg,
-  EventApi,
-  EventChangeArg,
-  EventClickArg,
-  EventInput
-} from '@fullcalendar/core'; // useful for typechecking
+import {CalendarOptions, DateSelectArg, EventApi, EventChangeArg, EventClickArg, EventInput} from '@fullcalendar/core'; // useful for typechecking
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-import {createEventId, INITIAL_EVENTS} from "./event-utils";
 import {Event} from "../../models/event";
 import {EventServiceService} from "../../services/event.service.service";
-import * as moment from "moment";
 import tippy from "tippy.js";
 import {Router} from "@angular/router";
-import {getElSeg} from "@fullcalendar/core/internal";
-
-
-
-// import { INITIAL_EVENTS, createEventId } from './event-utils';
-//import {EventApiSpring} from './event-from-API'
 
 @Component({
   selector: 'app-planning',
@@ -97,9 +81,9 @@ export class PlanningComponent implements OnInit {
   }
 
   handleDateSelect(selectInfo: DateSelectArg) {
-    if (confirm(`Do you want to create event ?`)){
+    if (confirm(`Do you want to create event ?`)) {
       const date = selectInfo.startStr;
-    this.router.navigate(['add-event'], { queryParams: { date: date } });
+      this.router.navigate(['add-event'], {queryParams: {date: date}});
     }
   }
 
@@ -107,20 +91,9 @@ export class PlanningComponent implements OnInit {
 
   handleEventClick(clickInfo: EventClickArg) {
     if (confirm(`Do you wanna see the event details ?'${clickInfo.event.title}'`)) {
-      //this.router.navigate(['event-details/:id']);
       this.router.navigate([`event-details/${clickInfo.event.id}`]);
-    //   clickInfo.event.remove();
-    //   const eventId = parseInt(clickInfo.event.id, 10); // conversion en nombre
-    //   this.eventService.deleteEvent(eventId).subscribe(() => {
-    //     this.currentEvents = this.currentEvents.filter(event => event.id !== clickInfo.event.id);
-    //   });
-    //
-    //
-    // } else {this.router.navigate(['add-users'])}
-    // ;
+    }
   }
-  }
-
 
 
   handleEvents(events: EventApi[]) {
@@ -171,16 +144,6 @@ export class PlanningComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
   events: EventInput[] = [];
 
   ngOnInit(): void {
@@ -190,20 +153,4 @@ export class PlanningComponent implements OnInit {
     });
   }
 
-
-
-  // events: EventInput[] = [];
-  //
-  // ngOnInit(): void {
-  //   this.eventService.getEvents().subscribe(events => {
-  //     this.events = events.map(event => ({
-  //       title: event.title,
-  //       start: new Date(event.date),
-  //       end: new Date(event.date),
-  //       description: event.description,
-  //       id: String(event.id), // Convertir l'ID en string
-//   //     }));
-//   //   });
-//
-// }
 }

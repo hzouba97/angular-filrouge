@@ -1,59 +1,60 @@
-
 <div class="container sm-container mt-2 p-4">
   <h2 class="text-center">Create an Account</h2>
 
-    <div class="form-group">
-      <label> Lastname:</label>
-      <input type="text" [(ngModel)]="users.firstname" name="nom" class="form-control" required>
-    </div>
-
-    <div class="form-group">
-      <label for="prenom" >Firstname:</label>
-      <input type="text" [(ngModel)]="users.lastname" class="form-control" id="prenom" name="prenom" required>
-    </div>
-
   <div class="form-group">
-    <label for="username" >Username:</label>
-    <input type="text" [(ngModel)]="users.username" class="form-control" id="username" name="username" required>
+    <label> Lastname:</label>
+    <input type="text" [(ngModel)]="user.firstname" name="nom" class="form-control" required>
   </div>
 
-    <div class="form-group">
-      <label for="email">E-mail:</label>
-      <input type="email" [(ngModel)]="users.mail" class="form-control" id="email" name="email" required>
-    </div>
+  <div class="form-group">
+    <label for="prenom">Firstname:</label>
+    <input type="text" [(ngModel)]="user.lastname" class="form-control" id="prenom" name="prenom" required>
+  </div>
 
-    <div class="form-group">
-      <label for="motdepasse">Password:</label>
-      <input type="password" [(ngModel)]="users.password" class="form-control" id="motdepasse" name="motdepasse" required>
-    </div>
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" [(ngModel)]="user.username" class="form-control" id="username" name="username" required>
+  </div>
 
-    <div class="form-group">
-      <label for="ville">City:</label>
-      <input type="text" [(ngModel)]="users.ville" class="form-control" id="ville" name="ville" required>
-    </div>
+  <div class="form-group">
+    <label for="email">E-mail:</label>
+    <input type="email" [(ngModel)]="user.mail" class="form-control" id="email" name="email" required>
+  </div>
 
-    <div class="form-group">
-      <label for="genre">Genre:</label>
-      <select [(ngModel)]="users.gender" class="form-control" id="genre" name="genre">
-        <option value="homme">M</option>
-        <option value="femme">F</option>
-        <option value="autre">Other</option>
-      </select>
-    </div>
+  <div class="form-group">
+    <label for="motdepasse">Password:</label>
+    <input type="password" [(ngModel)]="user.password" class="form-control" id="motdepasse" name="motdepasse" required>
+  </div>
 
-    <div class="form-group">
-      <label for="date_naissance">Birthdate:</label>
-      <input type="date" [(ngModel)]="users.birthdate" class="form-control" id="date_naissance" name="date_naissance" required>
-    </div>
+  <div class="form-group">
+    <label for="ville">City:</label>
+    <input type="text" [(ngModel)]="user.ville" class="form-control" id="ville" name="ville" required>
+  </div>
 
-    <div class="form-group">
-      <label for="telephone">Phone number:</label>
-      <input type="tel" [(ngModel)]="users.phone" class="form-control" id="telephone" name="telephone" required pattern="\d{10}">
-      <small class="form-text text-muted">Enter a valid phone number (10 digits).</small>
-    </div>
+  <div class="form-group">
+    <label for="genre">Genre:</label>
+    <select [(ngModel)]="user.gender" class="form-control" id="genre" name="genre">
+      <option value="homme">M</option>
+      <option value="femme">F</option>
+      <option value="autre">Other</option>
+    </select>
+  </div>
 
-<div class="text-center">
-  <button type="submit" class="btn btn-primary"  (click)="addUsers()">Register</button>
-</div>
+  <div class="form-group">
+    <label for="date_naissance">Birthdate:</label>
+    <input type="date" [(ngModel)]="user.birthdate" class="form-control" id="date_naissance" name="date_naissance"
+           required>
+  </div>
+
+  <div class="form-group">
+    <label for="telephone">Phone number:</label>
+    <input type="tel" [(ngModel)]="user.phone" class="form-control" id="telephone" name="telephone" required
+           pattern="\d{10}">
+    <small class="form-text text-muted">Enter a valid phone number (10 digits).</small>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary" (click)="addUsers()">Register</button>
+  </div>
 
 </div>

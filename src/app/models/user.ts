@@ -1,5 +1,5 @@
-export interface Users {
-  id: number;
+export interface User {
+  id?: number;
   admin: boolean;
   username: string;
   firstname: string;

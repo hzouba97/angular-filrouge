@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Users} from "../../models/users";
 import {map, mergeMap} from "rxjs";
 import {UsersService} from "../../services/users.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-users-details',
@@ -11,7 +11,8 @@ import {UsersService} from "../../services/users.service";
 })
 export class UsersDetailsComponent implements OnInit {
 
-  users!: Users;
+  user!: User;
+
   constructor(private usersService: UsersService,
               private activateRoute: ActivatedRoute,
               private router: Router) {
@@ -21,15 +22,15 @@ export class UsersDetailsComponent implements OnInit {
     this.activateRoute.params
       .pipe(
         map(params => params['id']),
-        mergeMap((usersId:number)=> this.usersService.fetchUsersById(usersId))
+        mergeMap((usersId: number) => this.usersService.fetchUsersById(usersId))
       )
-      .subscribe((users:Users) => {
-        this.users = users;
+      .subscribe((users: User) => {
+        this.user = users;
       });
 
-    }
+  }
 
   editUser() {
-    this.router.navigate([`/edit-user/${this.users.id}`]);
+    this.router.navigate([`/edit-user/${this.user.id}`]);
   }
 }
