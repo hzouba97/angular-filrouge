@@ -28,7 +28,11 @@
           <a class="nav-link" (click)="showProfil()">Profil</a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn">
-          <a href class="nav-link text-danger" (click)="logout()">Sign out</a>
+          <a href class="nav-link text-danger" (click)="logout()">Sign out
+            <span *ngIf="logoutLoading" class="spinner-border spinner-border-sm" role="status">
+              <span class="sr-only">Loading...</span>
+            </span>
+          </a>
         </li>
       </ul>
     </div>
