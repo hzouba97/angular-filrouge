@@ -6,10 +6,14 @@ import {Observable} from 'rxjs';
 export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({
-      withCredentials: true,
-    });
-    return next.handle(req);
+    if (req.headers.get("skip")) {
+      return next.handle(req);
+    } else {
+      req = req.clone({
+        withCredentials: true,
+      });
+      return next.handle(req);
+    }
   }
 }
 
