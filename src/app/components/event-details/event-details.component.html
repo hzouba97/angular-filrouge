@@ -1,9 +1,26 @@
-<div *ngIf="event">
-  <h1> {{event.title}}</h1>
-  <h5 class="my-3">{{event.description}}</h5>
-  <h5 class="my-3">{{event.date}}</h5>
-  <h5 class="my-3">{{event.startTime}}</h5>
-  <h5 class="my-3">{{event.endTime}}</h5>
-  <button type="button" class="btn btn-primary" (click)="editEvent()">Edit Event</button>
-  <button type="button" class="btn btn-primary" (click)="deleteEvent()">Delete Event</button>
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h3>{{event.title}}</h3>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{event.description}}</p>
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <p><strong>Date:</strong> {{event.date}}</p>
+        </div>
+        <div class="col-sm-6">
+          <p><strong>Start Time:</strong> {{event.startTime}}</p>
+        </div>
+        <div class="col-sm-6">
+          <p><strong>End Time:</strong> {{event.endTime}}</p>
+        </div>
+      </div>
+      <div class="text-center my-3">
+        <button type="submit" class="btn btn-primary mx-2" (click)="editEvent()">Edit Event</button>
+        <button type="submit" class="btn btn-danger mx-2" (click)="deleteEvent()">Delete Event</button>
+      </div>
+    </div>
+  </div>
 </div>
