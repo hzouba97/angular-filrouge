@@ -25,7 +25,7 @@
           <a class="nav-link" [routerLink]="['add-event']">Add Event</a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link" [routerLink]="['/users/2']">Profil</a>
+          <a class="nav-link" (click)="showProfil()">Profil</a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn">
           <a href class="nav-link text-danger" (click)="logout()">Sign out</a>

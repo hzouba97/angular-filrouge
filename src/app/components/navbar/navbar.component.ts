@@ -35,4 +35,8 @@ export class NavbarComponent implements OnInit {
     });
 
   }
+
+  showProfil() {
+    this.router.navigate(['users', this.storageService.getUser().id])
+  }
 }
